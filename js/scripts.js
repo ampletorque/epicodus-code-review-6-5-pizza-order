@@ -5,6 +5,7 @@ function Order(customerName, quantity, toppings, pizzaSize) {
   this.pizzaSize = pizzaSize;
   this.orderDate = new Date();
   this.cost = 0;
+  this.ident = Math.floor(Math.random()*10000);
 }
 
 Order.prototype.toppingsLister = function() {
@@ -33,19 +34,21 @@ function resetFields() {
   $("input#customer-name").val("");
 }
 
+// $("#order-item-" + newOrder.ident).last().
+
 function displayOrder(newOrder) {
   $("#show-order").fadeIn("slow");
   $("#show-order h2").text(newOrder.customerName);
-  $(".order-date").text(newOrder.orderDate);
-  $(".customer-name").text(newOrder.customerName);
-  $(".quantity").text(newOrder.quantity);
-  $(".pizza-size").text(newOrder.pizzaSize);
-  $(".toppings-selected").text(newOrder.toppingsLister());
-  $(".cost").text("$" + newOrder.cost);
+  $(".order-date-output").text(newOrder.orderDate);
+  $(".customer-name-output").text(newOrder.customerName);
+  $(".quantity-output").text(newOrder.quantity);
+  $(".pizza-size-output").text(newOrder.pizzaSize);
+  $(".toppings-output").text(newOrder.toppingsLister());
+  $(".cost-output").text("$" + newOrder.cost);
 }
 
 function hideOrder() {
-  $("#show-contact").fadeOut("slow");
+  $("#show-order").fadeOut("slow");
 }
 
 $(function() {
@@ -71,14 +74,15 @@ $(function() {
     newOrder.calculateCost();
 
     $("ul#orders").hide();
-    $("ul#orders").append("<li><span class='order-item'>" + newOrder.orderDate + "</span></li>");
+    $("ul#orders").append("<li><span id='order-item-" + newOrder.ident + "'> Name: " + newOrder.customerName + "     Date: " + newOrder.orderDate + "</span></li>");
     $("ul#orders").fadeIn("slow");
 
-    $(".order-item").last().hover(function() {
+    $("#order-item-" + newOrder.ident).last().hover(function() {
       displayOrder(newOrder);
     }, function() {
       hideOrder();
     });
+
 
     resetFields();
   });
