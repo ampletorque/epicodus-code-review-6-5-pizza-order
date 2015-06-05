@@ -34,6 +34,7 @@ function resetFields() {
   $("input#customer-name").val("");
 }
 
+// pre-unique-id-code pre-separate print and display version
 // function displayOrder(newOrder) {
 //   $("#show-order").fadeIn("slow");
 //   $("#show-order h2").text(newOrder.customerName);
@@ -66,6 +67,7 @@ function hideOrder(ident) {
   $("#order-item-" + ident + " .description").fadeOut();
 }
 
+// pre-unique-id-code version
 // function hideOrder() {
 //   $("#show-order").fadeOut("slow");
 // }
@@ -96,16 +98,12 @@ $(function() {
     $("ul#orders").append("<li><div id='order-item-" + newOrder.ident + "'> Name: " + newOrder.customerName + "     Date: " + newOrder.orderDate + "<br><div class='sub'></div></div></li>");
     $("ul#orders").fadeIn("slow");
     printOrder(newOrder);
-    
+
     $("#order-item-" + newOrder.ident).hover(function() {
       displayOrder(newOrder.ident);
     }, function() {
       hideOrder(newOrder.ident);
     });
-
-    // $("#order-item-" + newOrder.ident).click(function() {
-    //   displayOrder(newOrder);
-    // });
 
 
     resetFields();
