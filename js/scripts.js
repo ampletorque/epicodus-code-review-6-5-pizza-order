@@ -34,8 +34,6 @@ function resetFields() {
   $("input#customer-name").val("");
 }
 
-// $("#order-item-" + newOrder.ident).last().
-
 function displayOrder(newOrder) {
   $("#show-order").fadeIn("slow");
   $("#show-order h2").text(newOrder.customerName);
