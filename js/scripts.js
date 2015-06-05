@@ -34,20 +34,37 @@ function resetFields() {
   $("input#customer-name").val("");
 }
 
+// function displayOrder(newOrder) {
+//   $("#show-order").fadeIn("slow");
+//   $("#show-order h2").text(newOrder.customerName);
+//   $(".order-date-output").text(newOrder.orderDate);
+//   $(".customer-name-output").text(newOrder.customerName);
+//   $(".quantity-output").text(newOrder.quantity);
+//   $(".pizza-size-output").text(newOrder.pizzaSize);
+//   $(".toppings-output").text(newOrder.toppingsLister());
+//   $(".cost-output").text("$" + newOrder.cost);
+// }
+
 function displayOrder(newOrder) {
-  $("#show-order").fadeIn("slow");
-  $("#show-order h2").text(newOrder.customerName);
-  $(".order-date-output").text(newOrder.orderDate);
-  $(".customer-name-output").text(newOrder.customerName);
-  $(".quantity-output").text(newOrder.quantity);
-  $(".pizza-size-output").text(newOrder.pizzaSize);
-  $(".toppings-output").text(newOrder.toppingsLister());
-  $(".cost-output").text("$" + newOrder.cost);
+  $("#order-item-" + newOrder.ident + " .sub").html("<div class='description'>Name: <span id='sub-customer-name'></span><br>Date: <span id='sub-order-date'></span>" +
+  "<br>Quantity: <span id='sub-quantity'></span><br>Size: <span id='sub-pizza-size'></span><br>Toppings: <span id='sub-toppings'></span><br>Cost: <span id='sub-cost'></span></div>");
+  $("#order-item-" + newOrder.ident + " .description").hide();
+  $("#order-item-" + newOrder.ident + " .description #sub-customer-name").text(newOrder.customerName);
+  $("#order-item-" + newOrder.ident + " .description #sub-order-date").text(newOrder.orderDate);
+  $("#order-item-" + newOrder.ident + " .description #sub-quantity").text(newOrder.quantity);
+  $("#order-item-" + newOrder.ident + " .description #sub-pizza-size").text(newOrder.pizzaSize);
+  $("#order-item-" + newOrder.ident + " .description #sub-toppings").text(newOrder.toppingsLister());
+  $("#order-item-" + newOrder.ident + " .description #sub-cost").text("$" + newOrder.cost);
+  $("#order-item-" + newOrder.ident + " .description").fadeIn();
 }
 
-function hideOrder() {
-  $("#show-order").fadeOut("slow");
+function hideOrder(newOrder) {
+  $("#order-item-" + newOrder.ident + " .description").fadeOut();
 }
+
+// function hideOrder() {
+//   $("#show-order").fadeOut("slow");
+// }
 
 $(function() {
 
@@ -72,14 +89,18 @@ $(function() {
     newOrder.calculateCost();
 
     $("ul#orders").hide();
-    $("ul#orders").append("<li><span id='order-item-" + newOrder.ident + "'> Name: " + newOrder.customerName + "     Date: " + newOrder.orderDate + "</span></li>");
+    $("ul#orders").append("<li><div id='order-item-" + newOrder.ident + "'> Name: " + newOrder.customerName + "     Date: " + newOrder.orderDate + "<br><div class='sub'></div></div></li>");
     $("ul#orders").fadeIn("slow");
 
-    $("#order-item-" + newOrder.ident).last().hover(function() {
+    $("#order-item-" + newOrder.ident).hover(function() {
       displayOrder(newOrder);
     }, function() {
-      hideOrder();
+      hideOrder(newOrder);
     });
+
+    // $("#order-item-" + newOrder.ident).click(function() {
+    //   displayOrder(newOrder);
+    // });
 
 
     resetFields();
