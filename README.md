@@ -23,3 +23,7 @@ MIT License. Copyright 2015 Andrew David Burt.
 Bugs:
 -----
 None so far.
+
+Notes:
+------
+Currently lists all orders but only allows viewing details of most recent order. I was experimenting with unique IDs, but though the IDs are getting dropped in the HTML tags successfully, the click handlers are only adding the most recent one. All program requirements per the assignment are completed though.

@@ -45,7 +45,7 @@ function resetFields() {
 //   $(".cost-output").text("$" + newOrder.cost);
 // }
 
-function displayOrder(newOrder) {
+function printOrder(newOrder) {
   $("#order-item-" + newOrder.ident + " .sub").html("<div class='description'>Name: <span id='sub-customer-name'></span><br>Date: <span id='sub-order-date'></span>" +
   "<br>Quantity: <span id='sub-quantity'></span><br>Size: <span id='sub-pizza-size'></span><br>Toppings: <span id='sub-toppings'></span><br>Cost: <span id='sub-cost'></span></div>");
   $("#order-item-" + newOrder.ident + " .description").hide();
@@ -55,11 +55,15 @@ function displayOrder(newOrder) {
   $("#order-item-" + newOrder.ident + " .description #sub-pizza-size").text(newOrder.pizzaSize);
   $("#order-item-" + newOrder.ident + " .description #sub-toppings").text(newOrder.toppingsLister());
   $("#order-item-" + newOrder.ident + " .description #sub-cost").text("$" + newOrder.cost);
-  $("#order-item-" + newOrder.ident + " .description").fadeIn();
+  // $("#order-item-" + newOrder.ident + " .description").fadeIn();
 }
 
-function hideOrder(newOrder) {
-  $("#order-item-" + newOrder.ident + " .description").fadeOut();
+function displayOrder(ident) {
+  $("#order-item-" + ident + " .description").fadeIn();
+}
+
+function hideOrder(ident) {
+  $("#order-item-" + ident + " .description").fadeOut();
 }
 
 // function hideOrder() {
@@ -91,11 +95,12 @@ $(function() {
     $("ul#orders").hide();
     $("ul#orders").append("<li><div id='order-item-" + newOrder.ident + "'> Name: " + newOrder.customerName + "     Date: " + newOrder.orderDate + "<br><div class='sub'></div></div></li>");
     $("ul#orders").fadeIn("slow");
-
+    printOrder(newOrder);
+    
     $("#order-item-" + newOrder.ident).hover(function() {
-      displayOrder(newOrder);
+      displayOrder(newOrder.ident);
     }, function() {
-      hideOrder(newOrder);
+      hideOrder(newOrder.ident);
     });
 
     // $("#order-item-" + newOrder.ident).click(function() {
