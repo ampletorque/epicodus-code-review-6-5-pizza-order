@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="js/scripts.js"></script>
+    <title>Pizza Orders</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Pizza Orders</h1>
+
+      <div class="row">
+        <div class="col-md-6">
+          <h2>Order a Pizza:</h2>
+          <form id="new-order">
+            <div class="form-group">
+              <label for="customer-name">Your name:</label>
+              <input type="text" class="form-control" id="customer-name">
+            </div>
+            <div class="form-group">
+            <select id="quantity" name="quantity" type="text">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            </div>
+            <div class="form-group">
+            <label class="toppings" id="anchovies"><input type="checkbox" value="anchovies">Anchovies</label>
+            <label class="toppings" id="pepperoni"><input type="checkbox" value="pepperoni">Pepperoni</label>
+            <label class="toppings" id="basil"><input type="checkbox" value="basil">Basil</label>
+            <label class="toppings" id="sausage"><input type="checkbox" value="sausage">Sausage</label>
+            <label class="toppings" id="peppers"><input type="checkbox" value="peppers">Peppers</label>
+            <label class="toppings" id="tomatoes"><input type="checkbox" value="tomatoes">Tomatoes</label>
+
+            </div>
+            <div class="form-group">
+            <select class="pizza-size" name="pizza-size" type="text">
+              <option value="personal">Personal</option>
+              <option value="small">Small</option>
+              <option value="medium">Medium</option>
+              <option value="large">Large</option>
+              <option value="super">Super</option>
+            </select>
+            </div>
+
+            <button type="submit" class="btn">Add</button>
+          </form>
+
+          <h2 id="order-header">Your Orders:</h2>
+          <ul id="orders">
+
+          </ul>
+        </div>
+
+        <div class="col-md-6">
+          <div id="show-order">
+            <h2></h2>
+
+            <p>Name: <span class="customer-name"></span></p>
+            <p>Date: <span class="order-date"></span></p>
+            <p>Quantity: <span class="quantity"></span></p>
+            <p>Toppings: <span class="toppings-selected"></span></p>
+            <p>Size: <span class="pizza-size"></span></p>
+            <p>Cost: <span class="cost"></span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
